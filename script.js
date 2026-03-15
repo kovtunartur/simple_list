@@ -1,42 +1,16 @@
-// Отримуємо посилання на елементи DOM
-const input = document.getElementById('task-input');
-const addBtn = document.getElementById('add-btn');
-const taskList = document.getElementById('task-list');
- 
-// Функція для створення нового завдання
-function addTask() {
-    const taskText = input.value.trim();
- 
-    if (taskText === "") {
-        alert("Будь ласка, введіть текст завдання!");
-        return;
+'use strict';
+
+const switcher = document.querySelector('.btn');
+switcher.addEventListener('click',function () { 
+    document.body.classList.toggle('light-theme');
+    document.body.classList.toggle('dark-theme');
+
+    const className = document.body.className;
+    if(className == "light-theme") {
+        this.textContent = "Dark";
+    } else {
+        this.textContent = "Light";
     }
- 
-    // Створюємо елемент завдання (наш контейнер label)
-    const label = document.createElement('label');
-    label.className = 'tasks-list-item';
- 
-    // Наповнюємо його структурними елементами
-    label.innerHTML = `
-        <input type="checkbox">
-        <span class="checkmark"></span>
-        <span class="text">${taskText}</span>
-    `;
- 
-    // Додаємо нове завдання в список
-    taskList.appendChild(label);
- 
-    // Очищаємо поле вводу
-    input.value = "";
-    input.focus();
-}
- 
-// Додаємо слухач кліку по кнопці "Додати"
-addBtn.addEventListener('click', addTask);
- 
-// Дозволяємо додавати завдання натисканням клавіші Enter
-input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        addTask();
-    }
+
+    console.log('current class name: ' + className);
 });
